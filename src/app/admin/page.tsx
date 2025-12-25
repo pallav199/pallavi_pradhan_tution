@@ -233,6 +233,14 @@ export default function AdminPage() {
         }
     }, []);
 
+    // Load quiz results from localStorage
+    useEffect(() => {
+        const storedResults = localStorage.getItem('quizResults');
+        if (storedResults) {
+            setResults(JSON.parse(storedResults));
+        }
+    }, []);
+
     const handleLogout = () => {
         localStorage.removeItem('teacherAuth');
         localStorage.removeItem('teacherAuthTime');

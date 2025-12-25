@@ -220,7 +220,62 @@ export default function QuizPage() {
             setSelectedAnswer(null);
             setShowExplanation(false);
         } else {
+            // Save quiz result to localStorage
+            saveQuizResult();
             setQuizState('result');
+        }
+    };
+
+    const saveQuizResult = () => {
+        if (!loggedInStudent || !selectedClass) return;
+
+        const correctAnswersCount = answers.filter(a => a.correct).length;
+        const percentage = Math.round((correctAnswersCount / totalQuestions) * 100);
+        const timeTaken = 300 - timeLeft; // Total time minus time left
+
+        const quizResult = {
+            id: Date.now(),
+            studentId: loggedInStudent.id,
+            studentName: loggedInStudent.name,
+            quizId: 1, // Default quiz ID for now
+            score: correctAnswersCount,
+            totalQuestions: totalQuestions,
+            percentage: percentage,
+            completedAt: new Date().toLocaleString('en-IN', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            }),
+            timeTaken: timeTaken
+        };
+
+        // Get existing results from localStorage
+        const existingResults = localStorage.getItem('quizResults');
+        const results = existingResults ? JSON.parse(existingResults) : [];
+
+        // Add new result
+        results.push(quizResult);
+        localStorage.setItem('quizResults', JSON.stringify(results));
+
+        // Update student statistics
+        const adminStudents = localStorage.getItem('adminStudents');
+        if (adminStudents) {
+            const students = JSON.parse(adminStudents);
+            const studentIndex = students.findIndex((s: any) => s.id === loggedInStudent.id);
+
+            if (studentIndex !== -1) {
+                // Get all results for this student
+                const studentResults = results.filter((r: any) => r.studentId === loggedInStudent.id);
+                const totalPercentage = studentResults.reduce((sum: number, r: any) => sum + r.percentage, 0);
+                const avgScore = Math.round(totalPercentage / studentResults.length);
+
+                students[studentIndex].quizzesTaken = studentResults.length;
+                students[studentIndex].avgScore = avgScore;
+
+                localStorage.setItem('adminStudents', JSON.stringify(students));
+            }
         }
     };
 
