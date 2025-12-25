@@ -508,23 +508,23 @@ body {
 /* ===== Mobile Responsive Styles ===== */
 /* Hide on mobile */
 .hide-mobile {
-  display: none;
+  display: flex;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   .hide-mobile {
-    display: block;
+    display: none !important;
   }
 }
 
 /* Show only on mobile */
 .show-mobile {
-  display: block;
+  display: none;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   .show-mobile {
-    display: none;
+    display: block !important;
   }
 }
 
@@ -534,193 +534,16 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Mobile-friendly buttons */
-@media (max-width: 640px) {
-  .btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .btn-sm {
-    padding: 0.625rem 1rem;
-    font-size: 0.8125rem;
-  }
-
-  .btn-lg {
-    padding: 0.875rem 1.5rem;
-    font-size: 0.9375rem;
-  }
-}
-
-/* Mobile-friendly cards */
-@media (max-width: 640px) {
-  .card {
-    border-radius: 12px;
-  }
-}
-
-/* Mobile-friendly forms */
+/* Mobile-friendly forms - prevents iOS zoom */
 @media (max-width: 640px) {
   .input {
-    font-size: 16px; /* Prevents zoom on iOS */
+    font-size: 16px;
   }
 }
 
-/* Responsive grid utilities */
-.grid-responsive {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: 1fr;
-}
-
-@media (min-width: 640px) {
-  .grid-responsive {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .grid-responsive {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Responsive flex utilities */
-.flex-responsive {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-@media (min-width: 768px) {
-  .flex-responsive {
-    flex-direction: row;
-  }
-}
-
-/* Mobile padding adjustments */
-@media (max-width: 640px) {
-  .container {
-    padding: 0 1rem;
-  }
-}
-
-/* Touch-friendly tap targets (minimum 44x44px) */
+/* Touch-friendly tap targets on mobile */
 @media (max-width: 768px) {
-  button,
-  a,
-  input[type="button"],
-  input[type="submit"] {
+  button {
     min-height: 44px;
-    min-width: 44px;
-  }
-}
-
-/* Prevent horizontal scroll on mobile */
-body {
-  overflow-x: hidden;
-}
-
-/* Mobile menu hamburger */
-.hamburger {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  cursor: pointer;
-  padding: 8px;
-}
-
-.hamburger span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: currentColor;
-  transition: all 0.3s ease;
-}
-
-.hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-
-/* ===== Admin Panel Mobile Responsiveness ===== */
-@media (max-width: 1024px) {
-  /* Make admin sidebar scrollable on tablets */
-  aside {
-    width: 200px !important;
-  }
-}
-
-@media (max-width: 768px) {
-  /* Hide admin sidebar on mobile by default */
-  aside {
-    position: fixed !important;
-    left: -240px !important;
-    transition: left 0.3s ease !important;
-    z-index: 100 !important;
-  }
-
-  aside.mobile-open {
-    left: 0 !important;
-  }
-
-  /* Adjust main content margin on mobile */
-  main {
-    margin-left: 0 !important;
-  }
-
-  /* Make cards stack on mobile */
-  [style*="display: grid"] {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Responsive stats grid */
-  [style*="gridTemplateColumns"] {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-
-/* Mobile-friendly tables */
-@media (max-width: 640px) {
-  table {
-    font-size: 0.875rem;
-  }
-
-  th, td {
-    padding: 8px 12px !important;
-  }
-
-  /* Hide less important columns on mobile */
-  th:nth-child(n+4),
-  td:nth-child(n+4) {
-    display: none;
-  }
-}
-
-/* Responsive modals */
-@media (max-width: 640px) {
-  [style*="maxWidth: '400px'"],
-  [style*="maxWidth: '500px'"],
-  [style*="maxWidth: '600px'"] {
-    max-width: calc(100vw - 32px) !important;
-    margin: 16px !important;
-  }
-}
-
-/* Mobile-friendly flex layouts */
-@media (max-width: 640px) {
-  [style*="display: flex"][style*="gap"] {
-    flex-direction: column;
-  }
-
-  [style*="flex: 1"] {
-    width: 100%;
   }
 }
