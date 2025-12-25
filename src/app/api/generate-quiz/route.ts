@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import * as pdfParse from 'pdf-parse';
 
 // Initialize Gemini AI
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
@@ -31,8 +32,7 @@ export async function POST(request: NextRequest) {
         // Parse PDF text
         let pdfText = '';
         try {
-            const pdfParse = (await import('pdf-parse')).default;
-            const pdfData = await pdfParse(buffer);
+            const pdfData = await (pdfParse as any)(buffer);
             pdfText = pdfData.text;
         } catch {
             return NextResponse.json({

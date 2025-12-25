@@ -5,6 +5,7 @@ import React from 'react';
 interface IconProps {
     className?: string;
     size?: number;
+    style?: React.CSSProperties;
 }
 
 export const BookOpenIcon: React.FC<IconProps> = ({ className = '', size = 24 }) => (
@@ -38,15 +39,15 @@ export const ClockIcon: React.FC<IconProps> = ({ className = '', size = 24 }) =>
     </svg>
 );
 
-export const CheckCircleIcon: React.FC<IconProps> = ({ className = '', size = 24 }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+export const CheckCircleIcon: React.FC<IconProps> = ({ className = '', size = 24, style }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} style={style}>
         <circle cx="12" cy="12" r="10" />
         <path d="m9 12 2 2 4-4" />
     </svg>
 );
 
-export const XIcon: React.FC<IconProps> = ({ className = '', size = 24 }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+export const XIcon: React.FC<IconProps> = ({ className = '', size = 24, style }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} style={style}>
         <path d="M18 6 6 18" />
         <path d="m6 6 12 12" />
     </svg>
