@@ -81,7 +81,7 @@ const Navbar: React.FC = () => {
                 </Link>
 
                 {/* Desktop Navigation */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }} className="hidden md:flex">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }} className="hide-mobile">
                     {navLinks.map((link) => (
                         <Link
                             key={link.href}
@@ -119,7 +119,7 @@ const Navbar: React.FC = () => {
                 {/* Mobile Menu Button */}
                 <button
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    className="md:hidden"
+                    className="show-mobile"
                     style={{
                         padding: '10px',
                         color: '#475569',
@@ -137,7 +137,7 @@ const Navbar: React.FC = () => {
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
                 <div
-                    className="md:hidden animate-fade-in"
+                    className="show-mobile animate-fade-in"
                     style={{
                         background: 'white',
                         borderTop: '1px solid #e2e8f0',
